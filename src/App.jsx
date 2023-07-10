@@ -19,8 +19,22 @@ import Start from "./Start";
 import Quiz from "./Quiz";
 
 export default function App() {
-  const [startQuiz, setStartQuiz] = useState(true);
-  return <div>{startQuiz ? <Quiz /> : <Start />}</div>;
+
+  const [startQuiz, setStartQuiz] = useState(false);
+
+  function startGame(){
+    setStartQuiz(true)
+  }
+
+ async function getAnswers(){
+ const res = await fetch('https://opentdb.com/api.php?amount=5&type=multiple')
+ const data = await res.json()
+ console.log(data)
+  }
+
+  return <div>{startQuiz ? 
+  <Quiz getAnswers={getAnswers}/> : 
+  <Start startGame={startGame}/>}
+  </div>;
 }
 
-//return <div>{startQuiz ? <Quiz /> : <Start />}</div>;
