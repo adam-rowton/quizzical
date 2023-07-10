@@ -1,13 +1,15 @@
 export default function Quiz(props) {
+  console.log(props.questions);
+
   const renderedQuestions = props.questions.map((item) => {
     return (
-      <div className="question-container">
+      <div className="question-container" key={item.key}>
         <p>{item.question}</p>
-        <p>{item.key}</p>
+        {/* {answers} */}
       </div>
     );
   });
-  console.log(renderedQuestions);
+  // console.log(renderedQuestions);
 
   return (
     <div className="main-start">
