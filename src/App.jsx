@@ -13,7 +13,6 @@
 // https://www.youtube.com/watch?v=SWYqp7iY_Tc
 
 import "./styles.css";
-import React from "react";
 import { useState } from "react";
 import Start from "./Start";
 import Quiz from "./Quiz";
@@ -24,11 +23,18 @@ export default function App() {
   const [startQuiz, setStartQuiz] = useState(false);
   const [questions, setQuestions] = useState([]);
 
-  function startGame() {
-    setStartQuiz(true);
-  }
+  // game sequence:
+  //
+  // 1. start page is rendered by default
 
-  // get questions api call
+  // on click, startGame() renders the quiz page and gets questions:
+
+  function startGame() {
+    // renders the quiz page
+    setStartQuiz(true);
+
+    getQuestions();
+  }
 
   async function getQuestions() {
     const res = await fetch(
@@ -44,12 +50,20 @@ export default function App() {
     setQuestions(questionArray);
   }
 
+  // 2. User makes selections:
+
+  // 3. Check answers:
+
+  function getAnswers() {
+    console.log("heyo");
+  }
+
   //app return statment to render content
 
   return (
     <div>
       {startQuiz ? (
-        <Quiz getQuestions={getQuestions} questions={questions} />
+        <Quiz questions={questions} getAnswers={getAnswers} />
       ) : (
         <Start startGame={startGame} />
       )}

@@ -14,7 +14,7 @@ export default function Quiz(props) {
       <div className="quiz-page">
         {renderedQuestions}
         <div className="quiz-button">
-          <button className="main-button" onClick={props.getQuestions}>
+          <button className="main-button" onClick={props.getAnswers}>
             Check Answers
           </button>
         </div>
