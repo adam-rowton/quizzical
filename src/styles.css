@@ -46,3 +46,19 @@
   font-family: "Karla", sans-serif;
   font-weight: 700;
 }
+
+.quiz-page {
+  display: grid;
+  height: 100%;
+  padding: 10%;
+}
+
+.quiz-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.question-container {
+  border-bottom: 1px solid black;
+}
