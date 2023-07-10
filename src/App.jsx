@@ -21,6 +21,7 @@ import Quiz from "./Quiz";
 export default function App() {
 
   const [startQuiz, setStartQuiz] = useState(false);
+  const [questions, setQuestions] = useState([])
 
   function startGame(){
     setStartQuiz(true)
@@ -29,11 +30,16 @@ export default function App() {
  async function getAnswers(){
  const res = await fetch('https://opentdb.com/api.php?amount=5&type=multiple')
  const data = await res.json()
- console.log(data)
+//  console.log(data)
+ const questionArray = data.results.map(item => {
+   return {question: item.question}
+ })
+ setQuestions(questionArray)
+ console.log(questions)
   }
 
   return <div>{startQuiz ? 
-  <Quiz getAnswers={getAnswers}/> : 
+  <Quiz getAnswers={getAnswers} questions={questions}/> : 
   <Start startGame={startGame}/>}
   </div>;
 }

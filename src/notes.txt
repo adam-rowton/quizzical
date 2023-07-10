@@ -1,0 +1,8 @@
+to do with api response: 
+
+Save and format response in state 
+Take data from the state and map over values to create questions
+    need to shuffle correct answer into array
+    assign correct answer boolean and nanoid to each
+
+look at encoding options
