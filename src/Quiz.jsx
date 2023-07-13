@@ -1,26 +1,46 @@
 export default function Quiz(props) {
-  console.log(props.questions);
+  // console.log(props.questions[0].answers);
 
   const renderedQuestions = props.questions.map((item) => {
+    // create answer elements
+    const answers = item.answers.map((answer) => {
+      return (
+        <label key={answer.value} onClick={props.handleSelect}>
+          <input
+            className="answer"
+            type="radio"
+            value={answer.value}
+            name={item.question}
+            required={true}
+          />
+          {answer.value}
+        </label>
+      );
+    });
+
+    // render question with answers
     return (
       <div className="question-container" key={item.key}>
         <p>{item.question}</p>
-        {/* {answers} */}
+        <div className="answerContainer">{answers}</div>
       </div>
     );
   });
-  // console.log(renderedQuestions);
 
   return (
     <div className="main-start">
-      <div className="quiz-page">
+      <form className="quiz-page">
         {renderedQuestions}
         <div className="quiz-button">
-          <button className="main-button" onClick={props.getAnswers}>
+          <button
+            className="main-button"
+            onClick={props.getAnswers}
+            type="submit"
+          >
             Check Answers
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }

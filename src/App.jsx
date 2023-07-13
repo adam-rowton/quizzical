@@ -22,6 +22,7 @@ import { decode } from "html-entities";
 export default function App() {
   const [startQuiz, setStartQuiz] = useState(false);
   const [questions, setQuestions] = useState([]);
+  const [formData, setFormData] = useState([]);
 
   // game sequence:
   //
@@ -38,10 +39,10 @@ export default function App() {
   // Get data from API call: https://opentdb.com/api_config.php
   async function getQuestions() {
     const res = await fetch(
-      "https://opentdb.com/api.php?amount=5&type=multiple"
+      "https://opentdb.com/api.php?amount=5&difficulty=easy&type=multiple"
     );
     const data = await res.json();
-    // console.log(data.results);
+
     // Format data for quiz screen
     formatQuestions(data);
   }
@@ -71,13 +72,19 @@ export default function App() {
     });
     setQuestions(questionArray);
   }
-  // console.log(questionArray.answers);
 
   // 2. User makes selections:
 
+  function handleSelect() {
+    // setFormData(...prevForm, e.target.value);
+
+    console.log("select");
+  }
+
   // 3. Check answers:
 
-  function getAnswers() {
+  function getAnswers(e) {
+    e.preventDefault();
     console.log("heyo");
   }
 
@@ -86,7 +93,11 @@ export default function App() {
   return (
     <div>
       {startQuiz ? (
-        <Quiz questions={questions} getAnswers={getAnswers} />
+        <Quiz
+          questions={questions}
+          getAnswers={getAnswers}
+          handleSelect={handleSelect}
+        />
       ) : (
         <Start startGame={startGame} />
       )}

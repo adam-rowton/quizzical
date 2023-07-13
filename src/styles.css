@@ -50,7 +50,7 @@
 .quiz-page {
   display: grid;
   height: 100%;
-  padding: 10%;
+  padding: 7% 13%;
 }
 
 .quiz-button {
@@ -61,4 +61,27 @@
 
 .question-container {
   border-bottom: 1px solid black;
+  padding-right: 30px;
+}
+
+.answerContainer {
+  display: flex;
+  align-items: center;
+  /* justify-content: space-evenly; */
+  gap: 10px;
+  height: 50%;
+  width: 100%;
+}
+
+.answer {
+  border: 1px solid black;
+  border-radius: 8px;
+  padding: 3px 7px;
+  color: #293264;
+  font-family: "inter", sans-serif;
+  background-color: #f5f7fb;
+}
+
+label {
+  font-size: 0.7rem;
 }
