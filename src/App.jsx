@@ -68,17 +68,27 @@ export default function App() {
         key: nanoid(),
         correctAnswer: decode(item.correct_answer),
         answers: formattedAnswers,
+        selectedAnswer: "",
       };
     });
     setQuestions(questionArray);
+    setFormData(questionArray);
   }
 
   // 2. User makes selections:
 
-  function handleSelect() {
-    // setFormData(...prevForm, e.target.value);
+  function handleSelect(e) {
+    console.log(e.target.name);
+    console.log(e.target.value);
+    console.log(formData);
 
-    console.log("select");
+    setFormData({
+      ...formData,
+      [e.target.name]: {
+        ...formdata.e.target.name,
+        selectedAnswer: e.target.value,
+      },
+    });
   }
 
   // 3. Check answers:
