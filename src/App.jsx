@@ -23,6 +23,7 @@ export default function App() {
   const [startQuiz, setStartQuiz] = useState(false);
   const [questions, setQuestions] = useState([]);
   const [formData, setFormData] = useState([]);
+  const [allSelected, setAllSelected] = useState(false);
 
   // game sequence:
   //
@@ -68,7 +69,7 @@ export default function App() {
         key: nanoid(),
         correctAnswer: decode(item.correct_answer),
         answers: formattedAnswers,
-        selectedAnswer: "",
+        // selectedAnswer: "",
       };
     });
     setQuestions(questionArray);
@@ -78,19 +79,25 @@ export default function App() {
   // 2. User makes selections:
 
   function handleSelect(e) {
-    console.log(e.target.name);
-    console.log(e.target.value);
-    console.log(formData);
-
-    setFormData({
-      ...formData,
-      [e.target.name]: {
-        ...formdata.e.target.name,
-        selectedAnswer: e.target.value,
-      },
-    });
+    const questionName = e.target.name;
+    const chosenAnswer = e.target.value;
+    // map over form data to find object with matching question and set formdata at that index
+    setFormData(
+      formData.map((item) => {
+        if (item.question === questionName) {
+          return {
+            ...item,
+            selectedAnswer: chosenAnswer,
+          };
+        } else {
+          return item;
+        }
+      })
+    );
+    // check if all questions have selected answers - use state to allow check answers button
+    checkAllSelected();
   }
-
+  console.log(formData);
   // 3. Check answers:
 
   function getAnswers(e) {
