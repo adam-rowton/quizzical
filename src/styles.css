@@ -61,7 +61,8 @@
 
 .question-container {
   border-bottom: 1px solid black;
-  padding-right: 30px;
+  display: grid;
+  gap: 5px;
 }
 
 .answerContainer {
