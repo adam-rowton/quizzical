@@ -66,10 +66,6 @@
   gap: 5px;
 }
 
-.question-container:nth-of-type(5) {
-  border: none;
-}
-
 .answerContainer {
   display: flex;
   align-items: center;
