@@ -24,6 +24,7 @@ export default function App() {
   const [questions, setQuestions] = useState([]);
   const [formData, setFormData] = useState([]);
   const [allSelected, setAllSelected] = useState(false);
+  const [score, setScore] = useState(0);
 
   // game sequence:
   //
@@ -81,6 +82,9 @@ export default function App() {
   function handleSelect(e) {
     const questionName = e.target.name;
     const chosenAnswer = e.target.value;
+    // console.log(e.target.value);
+    // console.log(e.target.name);
+
     // map over form data to find object with matching question and set formdata at that index
     setFormData(
       formData.map((item) => {
@@ -97,8 +101,17 @@ export default function App() {
     // check if all questions have selected answers - use state to allow check answers button
     checkAllSelected();
   }
-  console.log(formData);
+
+  function checkAllSelected() {
+    // console.log(formData);
+    setAllSelected(formData.every((item) => item.selectedAnswer));
+  }
+
   // 3. Check answers:
+  // create correct and incorrect css class
+  // add correct class to all correct answers
+  // if selected answer !=== correct answer, add incorrect class
+  // for each correct selection, increment score variable
 
   function getAnswers(e) {
     e.preventDefault();
@@ -114,6 +127,8 @@ export default function App() {
           questions={questions}
           getAnswers={getAnswers}
           handleSelect={handleSelect}
+          allSelected={allSelected}
+          score={score}
         />
       ) : (
         <Start startGame={startGame} />
