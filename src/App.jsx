@@ -1,4 +1,6 @@
-//useful links:
+//
+//external items used:
+//
 
 // Figma file:
 // https://www.figma.com/file/VXFKYqxpr35bTdN5RfSyEo/Quizzical-App-(Copy)?type=design&node-id=0-1&mode=design&t=4v89XDjlS3Hss4Ck-0
@@ -7,9 +9,7 @@
 // https://www.npmjs.com/package/html-entities#user-content-decodetext-options
 // https://www.npmjs.com/package/he#hedecodehtml-options
 
-//videos:
-// https://www.youtube.com/watch?v=Rh3tobg7hEo&t=367s
-// https://www.youtube.com/watch?v=SWYqp7iY_Tc
+//API: https://opentdb.com/api_config.php
 
 import "./styles.css";
 import { useState } from "react";
@@ -27,16 +27,21 @@ export default function App() {
   const [score, setScore] = useState(0);
   const [showScore, setShowScore] = useState(false);
 
+  //
   // game sequence:
   //
-  // 1. start page is rendered by default
-  // on click, startGame() renders the quiz page and gets questions:
 
+  //
+  // 1. start page is rendered by default
+  //
+
+  // on click, startGame() renders the quiz page and gets questions:
   function startGame() {
     // renders the quiz page
     setStartQuiz(true);
 
     getQuestions();
+    setAllSelected(false);
   }
 
   // Get data from API call: https://opentdb.com/api_config.php
@@ -78,13 +83,13 @@ export default function App() {
     setFormData(questionArray);
   }
 
+  //
   // 2. User makes selections:
+  //
 
   function handleSelect(e) {
     const questionName = e.target.name;
     const chosenAnswer = e.target.value;
-    // console.log(e.target.value);
-    // console.log(e.target.name);
 
     // map over form data to find object with matching question and set formdata at that index
     setFormData(
@@ -99,16 +104,16 @@ export default function App() {
         }
       })
     );
-    // check if all questions have selected answers - use state to allow check answers button
-    checkAllSelected();
   }
 
-  function checkAllSelected() {
-    // console.log(formData);
+  // check if all questions have selected answers - use state to allow check answers button
+  useEffect(() => {
     setAllSelected(formData.every((item) => item.selectedAnswer));
-  }
+  }, [formData]);
 
-  // 3. Check answers:
+  //
+  // 3. Check answers or reset game:
+  //
 
   function getAnswers(e) {
     e.preventDefault();
@@ -152,7 +157,9 @@ export default function App() {
     setShowScore((showScore) => !showScore);
   }
 
+  //
   //app return statment to render content
+  //
 
   return (
     <div>
