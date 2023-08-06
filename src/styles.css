@@ -60,9 +60,14 @@
 }
 
 .question-container {
+  padding-top: 5px;
   border-bottom: 1px solid black;
   display: grid;
   gap: 5px;
+}
+
+.question-container:nth-of-type(5) {
+  border: none;
 }
 
 .answerContainer {
