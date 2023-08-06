@@ -99,8 +99,8 @@ span {
   text-align: center;
 }
 
-.selected {
-  background-color: #d6dbf5;
+.score-tally {
+  padding-right: 7px;
 }
 
 .correct {
@@ -109,14 +109,6 @@ span {
 
 .incorrect {
   background-color: #f8bcbc;
-}
-
-label:focus-within {
-  background-color: #d6dbf5;
-}
-
-:checked + span {
-  background-color: #d6dbf5;
 }
 
 input[type="radio"]:checked ~ * {

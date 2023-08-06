@@ -25,6 +25,7 @@ export default function App() {
   const [formData, setFormData] = useState([]);
   const [allSelected, setAllSelected] = useState(false);
   const [score, setScore] = useState(0);
+  const [showScore, setShowScore] = useState(false);
 
   // game sequence:
   //
@@ -111,11 +112,25 @@ export default function App() {
   // create correct and incorrect css class
   // add correct class to all correct answers
   // if selected answer !=== correct answer, add incorrect class
-  // for each correct selection, increment score variable
 
   function getAnswers(e) {
     e.preventDefault();
     console.log("heyo");
+    // score the game
+    if (!showScore) {
+      //reset and calculate score
+      setScore(0);
+      for (const item of formData) {
+        if (item.correctAnswer === item.selectedAnswer) {
+          setScore((score) => (score += 1));
+        }
+      }
+    }
+    // reset game
+    else {
+      startGame();
+    }
+    setShowScore((showScore) => !showScore);
   }
 
   //app return statment to render content
@@ -129,6 +144,7 @@ export default function App() {
           handleSelect={handleSelect}
           allSelected={allSelected}
           score={score}
+          showScore={showScore}
         />
       ) : (
         <Start startGame={startGame} />

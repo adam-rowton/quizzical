@@ -32,13 +32,20 @@ export default function Quiz(props) {
       <form className="quiz-page">
         {renderedQuestions}
         <div className="quiz-button">
+          {props.showScore ? (
+            <p className="score-tally">
+              You scored {props.score}/5 correct answers
+            </p>
+          ) : (
+            ""
+          )}
           <button
-            disabled={!props.allSelected}
+            // disabled={!props.allSelected}
             className="main-button"
             onClick={props.getAnswers}
             type="submit"
           >
-            Check Answers
+            {props.showScore ? "New Quiz" : "Check Answers"}
           </button>
         </div>
       </form>
