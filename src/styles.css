@@ -104,13 +104,13 @@ span {
 }
 
 .correct {
-  background-color: #94d7a2;
+  background-color: #94d7a2 !important;
 }
 
 .incorrect {
-  background-color: #f8bcbc;
+  background-color: #f8bcbc !important;
 }
 
 input[type="radio"]:checked ~ * {
-  background: #d6dbf5 !important;
+  background: #d6dbf5;
 }

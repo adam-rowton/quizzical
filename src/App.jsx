@@ -109,13 +109,32 @@ export default function App() {
   }
 
   // 3. Check answers:
-  // create correct and incorrect css class
-  // add correct class to all correct answers
-  // if selected answer !=== correct answer, add incorrect class
 
   function getAnswers(e) {
     e.preventDefault();
-    console.log("heyo");
+
+    // create arrays of correct answers
+    const correctAnswers = formData.map((item) => {
+      return item.correctAnswer;
+    });
+
+    // create arrays of selected answers
+    const selectedAnswers = formData.map((item) => {
+      return item.selectedAnswer;
+    });
+
+    // add correct class to all correct answers
+    correctAnswers.forEach((answer) => {
+      document.getElementById(answer).classList.add("correct");
+    });
+
+    // if selected answer !=== correct answer, add incorrect class
+    selectedAnswers.forEach((answer) => {
+      if (!correctAnswers.includes(answer)) {
+        document.getElementById(answer).classList.add("incorrect");
+      }
+    });
+
     // score the game
     if (!showScore) {
       //reset and calculate score

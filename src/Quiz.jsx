@@ -13,7 +13,7 @@ export default function Quiz(props) {
             name={item.question}
             required={true}
           />
-          <span>{answer.value}</span>
+          <span id={answer.value}>{answer.value}</span>
         </label>
       );
     });
@@ -40,7 +40,7 @@ export default function Quiz(props) {
             ""
           )}
           <button
-            // disabled={!props.allSelected}
+            disabled={!props.allSelected}
             className="main-button"
             onClick={props.getAnswers}
             type="submit"
