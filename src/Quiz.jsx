@@ -21,7 +21,7 @@ export default function Quiz(props) {
     // render question with answers
     return (
       <div className="question-container" key={item.key}>
-        <p>{item.question}</p>
+        <p className="opaque">{item.question}</p>
         <div className="answerContainer">{answers}</div>
       </div>
     );

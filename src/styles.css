@@ -79,16 +79,6 @@
   display: none;
 }
 
-/* label {
-  font-size: 0.7rem;
-  border: 1px solid black;
-  border-radius: 8px;
-  padding: 3px 7px;
-  color: #293264;
-  font-family: "inter", sans-serif;
-  background-color: #f5f7fb;
-} */
-
 span {
   font-size: 0.7rem;
   display: inline-block;
@@ -107,10 +97,21 @@ span {
 
 .correct {
   background-color: #94d7a2 !important;
+  border: none;
+  opacity: 1 !important;
 }
 
 .incorrect {
   background-color: #f8bcbc !important;
+  border: none;
+}
+
+.transparent {
+  opacity: 0.5;
+}
+
+.opaque {
+  opacity: 1 !important;
 }
 
 input[type="radio"]:checked ~ * {

@@ -118,6 +118,20 @@ export default function App() {
   function getAnswers(e) {
     e.preventDefault();
 
+    // create arrays of all answers
+    const allAnswersArray = formData.map((item) => {
+      return item.answers.map((item) => {
+        return item.value;
+      });
+    });
+    const allAnswers = [];
+
+    allAnswersArray.forEach((answer) =>
+      answer.forEach((item) => {
+        allAnswers.push(item);
+      })
+    );
+
     // create arrays of correct answers
     const correctAnswers = formData.map((item) => {
       return item.correctAnswer;
@@ -128,8 +142,9 @@ export default function App() {
       return item.selectedAnswer;
     });
 
-    // add correct class to all correct answers
+    // add correct class to all correct answers and
     correctAnswers.forEach((answer) => {
+      correctAnswers.includes(answer);
       document.getElementById(answer).classList.add("correct");
     });
 
@@ -139,6 +154,17 @@ export default function App() {
         document.getElementById(answer).classList.add("incorrect");
       }
     });
+
+    // add transparent class to all others and question borders
+    allAnswers.forEach((answer) => {
+      if (!correctAnswers.includes(answer)) {
+        document.getElementById(answer).classList.add("transparent");
+      }
+    });
+
+    // document
+    //   .querySelectorAll(".question-container")
+    //   .classList.add("transparent");
 
     // score the game
     if (!showScore) {
