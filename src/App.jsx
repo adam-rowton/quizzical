@@ -76,7 +76,7 @@ export default function App() {
         key: nanoid(),
         correctAnswer: decode(item.correct_answer),
         answers: formattedAnswers,
-        // selectedAnswer: "",
+        // selectedAnswer: "", this is added later in handleSelect function
       };
     });
     setQuestions(questionArray);
